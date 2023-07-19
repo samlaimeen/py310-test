@@ -3,14 +3,9 @@ import logging
 from http import HTTPStatus
 
 import logging
-
-import time
-
 import azure.functions as func
-
 import requests
 
-import os
 
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
@@ -33,7 +28,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     #          status_code=200
     #     )
 
-    logging.info('Start at: %i', round(time.time() * 1000))
+    # logging.info('Start at: %i', round(time.time() * 1000))
 
     try:
 
@@ -58,7 +53,5 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         logging.error(str(e))
 
         return func.HttpResponse(str(e), status_code=HTTPStatus.INTERNAL_SERVER_ERROR.value)
-
-    logging.info('End at: %i', round(time.time() * 1000))
 
     return func.HttpResponse(status_code=HTTPStatus.NO_CONTENT.value)
